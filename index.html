@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ernesto Di Paola — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     CV — Versión D (dinámica + paletas conmutables + dark mode)
+     Paleta base: Aurora (cyan→violet). Incluye: subnav sticky, scroll‑reveal,
+     micro‑interacciones y export a PDF.
+  ========================================================= */
+  :root{
+    --ink:#0f172a;          /* texto principal */
+    --muted:#64748b;        /* texto secundario */
+    --line:#e5e7eb;         /* bordes suaves */
+    --paper:#ffffff;        /* fondo base */
+    --card:#ffffff;         /* tarjetas */
+    --chip-bg: rgba(255,255,255,.10);
+    --chip-border: rgba(255,255,255,.25);
+    --headerA:#0ea5e9;      /* sky-400 */
+    --headerB:#06b6d4;      /* cyan-500 */
+    --headerC:#8b5cf6;      /* violet-500 */
+  }
+  /* Paletas alternativas */
+  body[data-palette="sunset"]{ --headerA:#fb7185; --headerB:#f59e0b; --headerC:#8b5cf6; }
+  body[data-palette="emerald"]{ --headerA:#10b981; --headerB:#0ea5e9; --headerC:#065f46; }
+
+  /* Dark Mode */
+  body.dark{ --ink:#e5e7eb; --muted:#94a3b8; --line:#1f2937; --paper:#0b1220; --card:#0f1628; --chip-bg: rgba(255,255,255,.08); --chip-border: rgba(255,255,255,.18); }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0; background:#f6f7fb; color:var(--ink);
+    font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    transition: background .25s ease, color .25s ease;
+  }
+  body.dark{ background:#0b1220; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  /* ===== HERO con gradiente animado y blobs ===== */
+  .hero{ position:relative; overflow:hidden; color:#f8fafc; background:linear-gradient(120deg,var(--headerA),var(--headerB),var(--headerC)); background-size:180% 180%; animation:gradientShift 12s ease infinite; }
+  @keyframes gradientShift{ 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+  .hero::before, .hero::after{ content:""; position:absolute; width:420px; height:420px; border-radius:50%; filter:blur(60px); opacity:.35; pointer-events:none; background:radial-gradient(closest-side,#fff,transparent 70%); }
+  .hero::before{ top:-140px; left:-120px; animation:float1 18s ease-in-out infinite; }
+  .hero::after{ bottom:-160px; right:-120px; animation:float2 22s ease-in-out infinite; }
+  @keyframes float1{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(40px,30px) scale(1.08);} }
+  @keyframes float2{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(-40px,-20px) scale(0.92);} }
+
+  .wrap{ max-width:960px; margin:0 auto; }
+  .hero .wrap{ padding:46px 24px 28px; }
+  .top{ display:flex; align-items:center; gap:20px; }
+  .avatar{ width:100px; height:100px; border-radius:18px; object-fit:cover; border:3px solid rgba(255,255,255,.5); box-shadow:0 8px 28px rgba(0,0,0,.25); background:#334155; }
+  h1{ margin:0; font-size:clamp(32px,6vw,48px); letter-spacing:-.02em; line-height:1.05; }
+  .role{ font-weight:600; opacity:.95; }
+  .contact{ margin-top:14px; display:flex; flex-wrap:wrap; gap:10px 14px; }
+  .chip{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:var(--chip-bg); border:1px solid var(--chip-border); font-size:14px; transition:transform .2s ease, background .2s ease, border-color .2s ease; color:#E5E7EB; }
+  .chip:hover{ transform:translateY(-2px); background:rgba(255,255,255,.16); border-color:rgba(255,255,255,.4); }
+  .chip .icon{ display:inline-flex; width:18px; height:18px; }
+  .chip .icon svg{ width:18px; height:18px; fill:currentColor; }
+
+  .controls{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.35); color:#fff; background:rgba(255,255,255,.08); font-weight:600; box-shadow:0 6px 22px rgba(0,0,0,.15); transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+  .btn.primary{ background:linear-gradient(135deg,var(--headerB),var(--headerC)); border-color:transparent; }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.18); }
+
+  /* ===== Subnav sticky ===== */
+  .subnav{ position:sticky; top:0; z-index:20; backdrop-filter: saturate(180%) blur(8px); background:rgba(255,255,255,.6); border-bottom:1px solid var(--line); }
+  body.dark .subnav{ background:rgba(11,18,32,.6); }
+  .subnav .wrap{ padding:8px 16px; }
+  .subnav nav{ display:flex; gap:12px; flex-wrap:wrap; }
+  .subnav a{ font-size:14px; padding:8px 12px; border-radius:10px; border:1px solid var(--line); color:var(--ink); background:rgba(255,255,255,.7); }
+  body.dark .subnav a{ background:rgba(255,255,255,.06); border-color:#1f2937; color:#e5e7eb; }
+  .subnav a:hover{ transform:translateY(-1px); }
+
+  /* ===== Secciones con micro‑interacciones ===== */
+  .content{ padding:22px; }
+  .section{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 18px; box-shadow:0 8px 20px rgba(2,6,23,.04); margin:0 auto 18px; max-width:960px; transition:transform .18s ease, box-shadow .18s ease, background .2s ease; }
+  body.dark .section{ background:#0f1628; border-color:#1f2937; box-shadow:0 6px 16px rgba(0,0,0,.25); }
+  .section:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(2,6,23,.08); }
+  .section h2{ margin:0 0 12px; font-size:18px; letter-spacing:.05em; text-transform:uppercase; color:transparent; background:linear-gradient(90deg,var(--headerC),var(--headerB)); -webkit-background-clip:text; background-clip:text; position:relative; }
+  .section h2::after{ content:""; position:absolute; left:0; bottom:-6px; width:34px; height:3px; border-radius:3px; background:linear-gradient(90deg,var(--headerB),var(--headerC)); box-shadow:0 2px 8px rgba(139,92,246,.35); }
+
+  .summary{ line-height:1.75; font-size:15px; }
+  .tagbar{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{ padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:#F8FAFC; font-size:13px; }
+  body.dark .tag{ background:#0b1220; border-color:#1f2937; color:#e5e7eb; }
+
+  .item{ padding:14px 0; border-top:1px dashed #e5e7eb; }
+  .item:first-child{ border-top:0; }
+  .item h3{ margin:0; font-size:16px; }
+  .place{ color:#4338CA; font-weight:700; margin-top:2px; }
+  body.dark .place{ color:#a78bfa; }
+  .bullets{ margin:8px 0 0; padding-left:18px; }
+  .bullets li{ margin:6px 0; }
+
+  .edu .row{ display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:start; padding:12px 0; border-top:1px dashed #e5e7eb; }
+  .edu .row:first-child{ border-top:0; }
+  .edu .what{ font-weight:700; }
+  .edu .where{ color:#374151; }
+  .edu .meta{ color:#64748b; font-size:13px; }
+  body.dark .edu .where{ color:#cbd5e1; }
+  body.dark .edu .meta{ color:#94a3b8; }
+
+  footer{ text-align:center; color:#6b7280; font-size:12px; padding:18px 0 32px; }
+  body.dark footer{ color:#94a3b8; }
+
+  /* ===== Animaciones de aparición (scroll reveal) ===== */
+  .reveal{ opacity:0; transform:translateY(12px) scale(.98); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:translateY(0) scale(1); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px){ .hero .wrap{ padding:36px 18px 22px; } .top{ align-items:flex-start; } .avatar{ width:84px; height:84px; } .content{ padding:18px; } }
+
+  /* ===== Accesibilidad / impresión ===== */
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+  @media print{ body{ background:#fff; } .btn, .controls, .subnav, .hero::before, .hero::after{ display:none !important; } .section{ box-shadow:none; } @page{ size:A4; margin:10mm; } }
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0ea5e9">
+<meta property="og:title" content="Ernesto Di Paola — CV"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_AR"/>
+<meta property="og:description" content="Desarrollador Full Stack · Analista de Datos — CV web listo para imprimir en PDF."/>
+<meta property="og:image" content="images/perfil.jpeg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Person",
+  "name":"Ernesto Di Paola",
+  "jobTitle":"Desarrollador Full Stack / Analista de Datos",
+  "email":"mailto:gpchuky@gmail.com",
+  "telephone":"+54 383 460 4822",
+  "address":{"@type":"PostalAddress","addressLocality":"Córdoba","addressRegion":"Córdoba","addressCountry":"AR"},
+  "sameAs":["https://www.linkedin.com/in/ernesto-di-paola-4b481b2b3/"]
+}
+</script>
+<style>
+  /* Accesibilidad y print finas */
+  .btn:focus-visible, .chip:focus-visible{ outline:3px solid #a78bfa; outline-offset:2px; }
+  @media print{
+    *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .item, .section{ break-inside: avoid; page-break-inside: avoid; }
+    h2{ break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="top">
+        <img class="avatar" src="images/perfil.jpeg" alt="Foto de Ernesto Di Paola" />
+        <div>
+          <h1>Ernesto Di Paola</h1>
+          <div class="role">Desarrollador Full Stack · Analista de Datos</div>
+          <div class="contact" aria-label="Contacto">
+            <a class="chip" href="mailto:gpchuky@gmail.com" title="Email">
+              <span class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 13.065L1.97 6.5A2 2 0 0 1 3 6h18c.37 0 .72.1 1.02.28L12 13.065ZM22 8.3l-9.42 6.39a1.5 1.5 0 0 1-1.66 0L1.5 8.3V18a2 2 0 0 0 2 2h17a2 2 0 0 0 2-2V8.3Z" fill="currentColor"/></svg>
+              </span>
+              <span>gpchuky@gmail.com</span>
+            </a>
+            <a class="chip" href="https://wa.me/543834604822" target="_blank" rel="noopener" title="WhatsApp">
+              <span class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><g transform="scale(5.33333)"><path d="M24,4c-11.03,0 -20,8.97 -20,20c0,3.19 0.77,6.34 2.23,9.17l-2.14,7.66c-0.24,0.87 0.01,1.8 0.64,2.44c0.48,0.47 1.12,0.73 1.77,0.73c0.23,0 0.45,-0.03 0.67,-0.09l7.66,-2.14c2.83,1.46 5.99,2.23 9.17,2.23c11.03,0 20,-8.97 20,-20c0,-11.03 -8.97,-20 -20,-20zM34.36,31.37c-0.44,1.23 -2.6,2.42 -3.57,2.51c-0.97,0.09 -1.88,0.44 -6.34,-1.32c-5.38,-2.12 -8.78,-7.63 -9.04,-7.99c-0.27,-0.35 -2.16,-2.86 -2.16,-5.47c0,-2.6 1.37,-3.88 1.85,-4.41c0.49,-0.53 1.06,-0.66 1.41,-0.66c0.36,0 0.71,0 1.02,0.01c0.37,0.02 0.79,0.04 1.19,0.92c0.47,1.04 1.5,3.66 1.63,3.93c0.13,0.26 0.22,0.57 0.04,0.92c-0.17,0.35 -0.26,0.57 -0.53,0.88c-0.26,0.31 -0.55,0.69 -0.79,0.93c-0.26,0.26 -0.54,0.55 -0.23,1.08c0.31,0.53 1.37,2.26 2.94,3.66c2.02,1.8 3.72,2.36 4.25,2.63c0.53,0.26 0.84,0.22 1.15,-0.14c0.31,-0.35 1.32,-1.54 1.68,-2.07c0.35,-0.53 0.7,-0.44 1.19,-0.26c0.48,0.17 3.08,1.45 3.61,1.72c0.53,0.26 0.88,0.39 1.01,0.61c0.13,0.22 0.13,1.28 -0.31,2.52z" fill="currentColor"/></g></svg>
+              </span>
+              <span>+54 383 460 4822</span>
+            </a>
+            <a class="chip" href="https://www.linkedin.com/in/ernesto-di-paola-4b481b2b3/" target="_blank" rel="noopener" title="LinkedIn">
+              <span class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 5 2.12 5 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.3 2.4-2.6 4.9-2.6 5.2 0 6.2 3.4 6.2 7.8V24h-5V16c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1V24h-5V8z" fill="currentColor"/></svg>
+              </span>
+              <span>Ernesto Di Paola</span>
+            </a>
+            <span class="chip">📍 Córdoba, Argentina</span>
+          </div>
+          <div class="controls">
+            <a class="btn" id="paletteToggle" href="#" role="button">🎨 Cambiar paleta</a>
+            <a class="btn" id="themeToggle" href="#" role="button">☾ Modo oscuro</a>
+            <a class="btn" id="copyEmailBtn" href="#" role="button">📋 Copiar email</a>
+            <a class="btn" id="vcardBtn" href="#" role="button">🪪 Guardar contacto (.vcf)</a>
+            <a class="btn primary" href="#" onclick="window.print();return false;">⬇ Exportar PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CONTENIDO -->
+  <div class="content">
+    <section id="resumen" class="section reveal">
+      <h2>Resumen</h2>
+      <p class="summary">
+        Analista de datos y desarrollador Full Stack con experiencia en Claro/APEX. Me enfoco en estandarizar procesos, automatización de reportes, reducir tiempos de entrega y mejorar la experiencia del usuario.
+      </p>
+    </section>
+
+    <section id="habilidades" class="section reveal">
+      <h2>Habilidades</h2>
+      <h3>Habilidades Técnicas</h3>
+      <div class="tagbar">
+        <span class="tag">JavaScript</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">React</span>
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Grafana</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">SQL</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Office</span>
+        <span class="tag">Sytex</span>
+        <span class="tag">Stealth</span>
+      </div>
+      <h3>Habilidades Blandas</h3>
+      <div class="tagbar">
+        <span class="tag">Trabajo en equipo</span>
+        <span class="tag">Empatía</span>
+        <span class="tag">Proactividad</span>
+        <span class="tag">Puntualidad</span>
+        <span class="tag">Inglés intermedio</span>
+        <span class="tag">Portugués avanzado</span>
+        <span class="tag">Lightroom</span>
+      </div>
+    </section>
+    <section id="experiencia" class="section reveal">
+      <h2>Experiencia</h2>
+      <div class="item">
+        <h3>Analista de Reportes Técnicos</h3>
+        <div class="place">APEX America · Claro</div>
+        <ul class="bullets">
+          <li>Monitoreo y análisis de herramientas de detección de fallas de red en servicios móviles y residenciales (fija e IPTV).</li>
+          <li>Intervención en incidentes y escalamiento de fallas masivas, aportando información a diferentes áreas para minimizar el impacto en usuarios y agilizar la solución.</li>
+          <li>Automatización de tableros e informes operativos en <b>Power BI</b> y monitoreo de métricas con <b>Grafana</b>, incluyendo alertas en tiempo real para picos de demanda.</li>
+          <li>Elaboración de informes de rendimiento y reportes diarios, semanales y mensuales sobre problemáticas recurrentes.</li>
+          <li>Diseño de instructivos y capacitaciones para equipos de atención y procesos de soporte.</li>
+          <li>Asistencia a clientes referidos de la compañía, brindando soporte especializado y datos para escalamiento.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <h3>Asesor Técnico Convergente (Claro)</h3>
+        <div class="place">APEX America</div>
+        <ul class="bullets">
+          <li>Atención técnica, ventas y análisis de métricas de performance.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <h3>Encargado</h3>
+        <div class="place">World Insumo</div>
+        <ul class="bullets">
+          <li>Gestión de stock y compras, atención al público y community management.</li>
+          <li>Coordinación de equipo y caja.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <h3>Administrativo</h3>
+        <div class="place">Idear Time Group S.R.L</div>
+        <ul class="bullets">
+          <li>Relaciones públicas, control de personal y facturación.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <h3>Administrativo</h3>
+        <div class="place">Mall Rivadavia</div>
+        <ul class="bullets">
+          <li>Cobro de alquileres, depósitos y facturación.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="formacion" class="section edu reveal">
+      <h2>Formación Académica</h2>
+      <div class="row">
+        <div>
+          <div class="what">Tecnicatura en Desarrollo de Software</div>
+          <div class="where">Instituto Superior Blas Pascal</div>
+        </div>
+        <div class="meta">2021 – cursando último semestre</div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="what">Diplomatura · Desarrollador Full Stack</div>
+          <div class="where">Ícaro – FCEFyN</div>
+        </div>
+        <div class="meta">2022 – 2023</div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="what">Secundario · Bachiller en Cs. Sociales</div>
+          <div class="where">E.N.C.J.A</div>
+        </div>
+        <div class="meta">2009 – 2014</div>
+      </div>
+    </section>
+
+    <footer>
+      Exportá como PDF desde el botón o con “Imprimir → Guardar como PDF”.
+    </footer>
+  </div>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } }); },{ threshold: 0.08 });
+for(const el of document.querySelectorAll('.reveal')){ obs.observe(el); }
+
+// Theme + palette toggle con persistencia
+const root = document.body;
+const themeBtn = document.getElementById('themeToggle');
+const palBtn = document.getElementById('paletteToggle');
+const copyBtn = document.getElementById('copyEmailBtn');
+const vcardBtn = document.getElementById('vcardBtn');
+
+// restaurar preferencias
+const savedTheme = localStorage.getItem('cv-theme');
+const savedPalette = localStorage.getItem('cv-palette');
+if(savedTheme === 'dark'){ root.classList.add('dark'); }
+if(savedPalette){ root.setAttribute('data-palette', savedPalette); }
+
+function toggleTheme(e){ if(e) e.preventDefault(); root.classList.toggle('dark'); localStorage.setItem('cv-theme', root.classList.contains('dark') ? 'dark' : 'light'); }
+function cyclePalette(e){ if(e) e.preventDefault(); const order = ['aurora','sunset','emerald']; const current = root.getAttribute('data-palette') || 'aurora'; const next = order[(order.indexOf(current)+1)%order.length]; if(next==='aurora'){ root.removeAttribute('data-palette'); localStorage.removeItem('cv-palette'); } else { root.setAttribute('data-palette', next); localStorage.setItem('cv-palette', next); } }
+
+function copyEmail(e){ if(e) e.preventDefault(); const email='gpchuky@gmail.com'; if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(email).then(()=>{ if(copyBtn){ copyBtn.textContent='✔️ Email copiado'; setTimeout(()=>copyBtn.textContent='📋 Copiar email',1500); } }); } else { const ta=document.createElement('textarea'); ta.value=email; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); } }
+
+function downloadVcard(e){ if(e) e.preventDefault(); const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:Di Paola;Ernesto;;;
+FN:Ernesto Di Paola
+TITLE:Desarrollador Full Stack / Analista de Datos
+EMAIL;TYPE=INTERNET,PREF:gpchuky@gmail.com
+TEL;TYPE=CELL:+54 383 460 4822
+ADR;TYPE=WORK:;;Córdoba;;;Argentina
+URL:https://www.linkedin.com/in/ernesto-di-paola-4b481b2b3/
+END:VCARD`;
+  const blob = new Blob([vcard], {type:'text/vcard;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='Ernesto_Di_Paola.vcf'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+
+if(themeBtn) themeBtn.addEventListener('click', toggleTheme);
+if(palBtn) palBtn.addEventListener('click', cyclePalette);
+if(copyBtn) copyBtn.addEventListener('click', copyEmail);
+if(vcardBtn) vcardBtn.addEventListener('click', downloadVcard);
+</script>
+</body>
+</html>
