@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ernesto Di Paola — Web Pro</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-pro.css">
+  <meta name="color-scheme" content="light dark">
+</head>
+<body>
+  <!-- Skip to content (accesibilidad) -->
+  <a class="skip-link" href="#about">Saltar al contenido</a>
+
+  <!-- Gradient Mesh -->
+  <div class="mesh" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <!-- Sticky glass nav -->
+  <header class="nav">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span><span>Ernesto Di Paola</span></div>
+      <nav class="links">
+        <a href="#about">Sobre mí</a>
+        <a href="#skills">Habilidades</a>
+        <a href="#experience">Experiencia</a>
+        <a href="#education">Formación</a>
+        <a class="btn ghost" href="../cv-ernesto-responsive/index.html" target="_blank" rel="noopener">Versión PDF</a>
+        <button class="btn ghost" id="themeToggle" type="button" aria-pressed="false">Modo oscuro</button>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero wrap" id="about">
+    <div class="card hero-card reveal">
+      <img class="avatar" src="images/perfil.jpeg" alt="Foto de Ernesto Di Paola" width="120" height="120" loading="eager" decoding="async" />
+      <div class="headings">
+        <h1><span class="serif">Ernesto</span> Di Paola</h1>
+        <p class="role">Desarrollador Full Stack · Analista de Datos</p>
+        <div class="contacts">
+          <a class="chip" href="mailto:gpchuky@gmail.com" title="Email" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 13.065L1.97 6.5A2 2 0 0 1 3 6h18c.37 0 .72.1 1.02.28L12 13.065ZM22 8.3l-9.42 6.39a1.5 1.5 0 0 1-1.66 0L1.5 8.3V18a2 2 0 0 0 2 2h17a2 2 0 0 0 2-2V8.3Z"/></svg>
+            <span>gpchuky@gmail.com</span>
+          </a>
+          <a class="chip" href="https://wa.me/543834604822" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+            <svg viewBox="0 0 256 256" aria-hidden="true" focusable="false"><g transform="scale(5.33333)"><path d="M24,4c-11.03,0 -20,8.97 -20,20c0,3.19 0.77,6.34 2.23,9.17l-2.14,7.66c-0.24,0.87 0.01,1.8 0.64,2.44c0.48,0.47 1.12,0.73 1.77,0.73c0.23,0 0.45,-0.03 0.67,-0.09l7.66,-2.14c2.83,1.46 5.99,2.23 9.17,2.23c11.03,0 20,-8.97 20,-20c0,-11.03 -8.97,-20 -20,-20zM34.36,31.37c-0.44,1.23 -2.6,2.42 -3.57,2.51c-0.97,0.09 -1.88,0.44 -6.34,-1.32c-5.38,-2.12 -8.78,-7.63 -9.04,-7.99c-0.27,-0.35 -2.16,-2.86 -2.16,-5.47c0,-2.6 1.37,-3.88 1.85,-4.41c0.49,-0.53 1.06,-0.66 1.41,-0.66c0.36,0 0.71,0 1.02,0.01c0.37,0.02 0.79,0.04 1.19,0.92c0.47,1.04 1.5,3.66 1.63,3.93c0.13,0.26 0.22,0.57 0.04,0.92c-0.17,0.35 -0.26,0.57 -0.53,0.88c-0.26,0.31 -0.55,0.69 -0.79,0.93c-0.26,0.26 -0.54,0.55 -0.23,1.08c0.31,0.53 1.37,2.26 2.94,3.66c2.02,1.8 3.72,2.36 4.25,2.63c0.53,0.26 0.84,0.22 1.15,-0.14c0.31,-0.35 1.32,-1.54 1.68,-2.07c0.35,-0.53 0.7,-0.44 1.19,-0.26c0.48,0.17 3.08,1.45 3.61,1.72c0.53,0.26 0.88,0.39 1.01,0.61c0.13,0.22 0.13,1.28 -0.31,2.52z"/></g></svg>
+            <span>+54 383 460 4822</span>
+          </a>
+          <a class="chip" href="https://www.linkedin.com/in/ernesto-di-paola-4b481b2b3/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 5 2.12 5 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.7-1.3 2.4-2.6 4.9-2.6 5.2 0 6.2 3.4 6.2 7.8V24h-5V16c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1V24h-5V8z"/></svg>
+            <span>Ernesto Di Paola</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Resumen: ocupa el ancho completo del grid -->
+      <div class="summary glass">
+        <h2>Sobre mí</h2>
+        <p>Soy un apasionado de la tecnología y del aprendizaje continuo. 
+        Trabajo como analista de datos en el área de Reportes Técnica de Claro/APEX, 
+        donde estandarizo procesos y automatizo reportes para acelerar la toma de decisiones. 
+        Cuento con una Diplomatura en Desarrollo Full Stack y estoy por finalizar la Tecnicatura en Desarrollo de Software. 
+        Mi objetivo es aportar soluciones que generen impacto real en los usuarios y en la organización.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="wrap highlights reveal" aria-label="Logros destacados">
+    <div class="kpi"><span class="num">30%</span><span class="txt">↓ tiempo de entrega<br/>con reportes automatizados</span></div>
+    <div class="kpi"><span class="num">24/7</span><span class="txt">alertas en Grafana<br/>para picos de demanda</span></div>
+    <div class="kpi"><span class="num">+50</span><span class="txt">informes <br/>mensuales/diarios</span></div>
+  </section>
+
+  <!-- Skills -->
+  <section class="wrap section reveal" id="skills">
+    <h2>Habilidades</h2>
+    <div class="skills">
+      <div class="group">
+        <h3>Técnicas</h3>
+        <ul class="bars">
+          <li><span>JavaScript</span><em data-level="85"></em></li>
+          <li><span>Node.js</span><em data-level="80"></em></li>
+          <li><span>React</span><em data-level="75"></em></li>
+          <li><span>HTML/CSS</span><em data-level="85"></em></li>
+          <li><span>Power BI</span><em data-level="80"></em></li>
+          <li><span>Grafana</span><em data-level="70"></em></li>
+          <li><span>GitHub</span><em data-level="70"></em></li>
+          <li><span>SQL / MySQL</span><em data-level="70"></em></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3>Blandas</h3>
+        <div class="chips">
+          <span>Trabajo en equipo</span><span>Empatía</span><span>Proactividad</span>
+          <span>Puntualidad</span><span>Inglés intermedio</span><span>Portugués avanzado</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience timeline -->
+  <section class="wrap section reveal" id="experience">
+    <h2>Experiencia</h2>
+    <div class="timeline">
+      <article class="node">
+        <div class="dot"></div>
+        <div class="card">
+          <h3>Analista de Reportes Técnicos</h3>
+          <p class="place">APEX America · Claro</p>
+          <ul>
+            <li>Monitoreo y análisis de herramientas de detección de fallas de red en servicios móviles y residenciales (fija e IPTV).</li>
+            <li>Intervención en incidentes y escalamiento de fallas masivas, aportando información a diferentes áreas para minimizar el impacto en usuarios y agilizar la solución.</li>
+            <li>Automatización de tableros e informes operativos en <b>Power BI</b> y monitoreo de métricas con <b>Grafana</b>, incluyendo alertas en tiempo real para picos de demanda.</li>
+            <li>Elaboración de informes de rendimiento y reportes diarios, semanales y mensuales sobre problemáticas recurrentes.</li>
+            <li>Diseño de instructivos y capacitaciones para equipos de atención y procesos de soporte.</li>
+            <li>Asistencia a clientes referidos de la compañía, brindando soporte especializado y datos para escalamiento.</li>
+          </ul>
+        </div>
+        <span class="time">Actual</span>
+      </article>
+
+      <article class="node"><div class="dot"></div><div class="card"><h3>Asesor Técnico Convergente (Claro)</h3><p class="place">APEX America</p><ul><li>Atención técnica, ventas y análisis de métricas de performance.</li></ul></div></article>
+      <article class="node"><div class="dot"></div><div class="card"><h3>Encargado</h3><p class="place">World Insumo</p><ul><li>Gestión de stock y compras, community management y caja.</li></ul></div></article>
+      <article class="node"><div class="dot"></div><div class="card"><h3>Administrativo</h3><p class="place">Idear Time Group S.R.L</p><ul><li>Relaciones públicas, control de personal y facturación.</li></ul></div></article>
+      <article class="node"><div class="dot"></div><div class="card"><h3>Administrativo</h3><p class="place">Mall Rivadavia</p><ul><li>Cobro de alquileres, depósitos y facturación.</li></ul></div></article>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="wrap section reveal" id="education">
+    <h2>Formación</h2>
+    <ul class="edu">
+      <li><div class="info"><strong>Tecnicatura en Desarrollo de Software</strong><span>Instituto Superior Blas Pascal</span></div><em>2021 – cursando último semestre</em></li>
+      <li><div class="info"><strong>Diplomatura · Desarrollador Full Stack</strong><span>Ícaro – FCEFyN</span></div><em>2022 – 2023</em></li>
+      <li><div class="info"><strong>Secundario · Bachiller en Cs. Sociales</strong><span>E.N.C.J.A</span></div><em>2009 – 2014</em></li>
+    </ul>
+  </section>
+
+  <footer class="wrap footer">
+    <a class="btn ghost" href="../cv-ernesto-responsive/index.html" target="_blank" rel="noopener">Versión PDF</a>
+    <span>© Ernesto Di Paola</span>
+  </footer>
+
+  <script src="pro.js"></script>
+</body>
+</html>
